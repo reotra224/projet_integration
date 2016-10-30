@@ -1,0 +1,40 @@
+<?php
+	require_once('vue/entete.html');
+	require_once('vue/menu.html');
+	//Insertion de la classe DataBase
+	require_once('modele/signataire.php');
+?>
+<section>
+		<article>
+			<h2>Livre d'Or</h2>
+			<?php //Si la methode lister ne renvoie aucune données alors on affiche un message à la place
+				if(empty($list)){	?>
+					<div class="table_vide">
+						<?php  echo "Aucune signature Enregistrée !!!";	?>
+					</div>
+		<?php   }
+				else{ //Sinon on fait appel au fichier liste.php pour afficher les données récupérées.
+					require_once('vue/liste.php');
+				}
+		?>
+		</article>
+		<aside>
+			<a href="livre_d_or.php?add" title="Laisser une signature">
+				<img src="medias/livre_dor1.jpg" class="Le livre d'or"/>
+			</a>
+		</aside>
+		<?php //Si la methode lister ne renvoie aucune données alors on affiche un message à la place
+			if(!empty($list)){	?>
+		<div id="liste_page">
+			<?php echo "Page : ";
+				for ($i = 1; $i <= $nbre_de_page; $i++){ ?>
+					<a href="livre_d_or.php?page=<?php echo $i; ?>">
+						<?php echo $i.' '; ?>
+					</a>
+		  <?php }	?>
+		</div>
+		<?php   } ?>
+	</section>
+<?php
+	require_once('vue/pied.html');
+?>
